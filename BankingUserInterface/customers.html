@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script language="javascript">
+    var xmlhttp;
+    function init() {
+       // put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
+       //Referece: http://www.srikanthtechnologies.com/blog/java/rest_service_client.aspx
+       xmlhttp = new XMLHttpRequest();
+    }
+    function getCustomers() {
+        var id = document.getElementById("customers");
+        var url = "http://localhost:49000/api/customers/getCustomer";
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+
+               var id =  document.getElementById("id");
+               var pin =  document.getElementByPin("pin");
+			   var nameCustomer =  document.getElementByNameCustomer("nameCustomer");
+               var email =  document.getElementByEmail("email");
+			   var address =  document.getElementByAddress("address");
+
+               if (xmlhttp.readyState == 4) {
+
+                        // Print all the data from the API
+                        result.innerHTML = this.responseText;
+        };
+
+    }
+  </script>
+  </head>
+  <body  onload="init()">
+  <button class="btn">
+    <h class="fa fa-home" href="index.html">
+    <a href="index.html">Home</a></h>
+  </button>
+
+   <h1>Customers </h1>
+   <table>
+   <tr>
+       <td>Enter Account ID :  </td>
+       <td><input type="text" id="id" size="10"/>  <input type="button" value="Get Customer's Details" onclick="getdetails()"/>
+   </tr>
+   <tr>
+       <td>Enter your pin :  </td>
+       <td><input type="text" readonly="true" pint="pin" size="20"/> </td>
+   </tr>
+
+   <tr>
+       <td>Enter your name: </td>
+       <td><input type="text" readonly="true" nameCustomer="nameCustomer" size="10"/> </td>
+   </tr>
+   <tr>
+       <td>Enter your email:  </td>
+       <td><input type="text" readonly="true" email="email" size="20"/> </td>
+   </tr>
+   <tr>
+       <td>Enter your address:  </td>
+       <td><input type="text" readonly="true" address="address" size="20"/> </td>
+   </tr>
+   </table>
+  </body>
+</html>
